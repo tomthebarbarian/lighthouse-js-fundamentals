@@ -24,6 +24,8 @@ const generateBoard = (whiteQueen,blackQueen) => {
 // function queenThreat takes an arrayOf arraysOf num(generated board) representing
 // the position of 2 queens and returns a boolean indicating if 2 queen pieces
 // threaten each other. 
+
+// arrayOf arraysOf num -> bool
 const queenThreat = (generatedBoard) =>{
   let queen1 = []
   let queen2 = []
