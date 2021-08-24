@@ -2,6 +2,7 @@
 // array thereof and returns the input string modified to fulfill the 
 // specificiations of the casestyle(s)
 
+// str str/arrayOf str -> str
 const makeCase = function(input, casetype) {
   // Put your solution here
   let ansstr = ''

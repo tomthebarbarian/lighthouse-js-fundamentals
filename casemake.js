@@ -2,7 +2,6 @@
 // has input's white space stripped and is in camelCase.
 
 // str -> str 
-
 const camelCase = function(input) {
   // Your code here
   let toupper = false
@@ -29,4 +28,4 @@ const camelCase = function(input) {
 console.log(camelCase("this is a string"));
 console.log(camelCase("loopy lighthouse"));
 console.log(camelCase("supercalifragalisticexpialidocious"));
-*/
+*/  
