@@ -12,6 +12,30 @@ const makeCase = function(input, casetype) {
     //make single strs a len 1 array.
     casetype = [casetype]
   }
+  let prio1 = [camel, pascal, snake, kebab, title]
+  let prio2 = [vowel, consonant]
+  let prio3 = [upper, lower]
+  let ordofop = {
+    stage1:[],
+    stage2:[],
+    stage3:[]
+  }
+  // Determine ordofop
+  if (casetype.length> 1){  
+    for (let elem of casetype){
+      if (prio1.includes(elem)){
+        ordofop.stage1 = ordofop.stage1.concat(elem)
+      } else if (prio2.includes(elem)){
+        ordofop.stage2 = ordofop.stage2.concat(elem)
+      } else if  (prio3.includes(elem)){
+        ordofop.stage3 = ordofop.stage3.concat(elem)
+      }
+    }
+  } 
+
+
+
+  // Actually doing
   for (let elem of casetype){
     switch(elem){
     case 'camel':
