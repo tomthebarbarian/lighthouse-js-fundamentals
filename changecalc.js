@@ -1,5 +1,6 @@
 // function calculateChange takes 2 numbers (total, cash) and returns the 
-// remainder of cash / total.
+// remainder of cash / total as an object with the composite 
+// monetary denominations and quantity thereof.
 
 // num num -> obj
 
