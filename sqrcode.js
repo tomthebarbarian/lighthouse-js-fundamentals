@@ -33,8 +33,8 @@ const squareCode = function(message) {
   //console.log(jump)
   for (let i = 0; i < rowlen; i++){
     for (let elem of jump){
-      if (i+elem === workstr.length){
-        return outputstr
+      if (i+elem >= workstr.length){
+        continue
       }
       outputstr += workstr[i+elem]
       //console.log(workstr[i+elem])
@@ -45,8 +45,8 @@ const squareCode = function(message) {
 };
 
 //console.log(squareCode("chill out"));
-//console.log(squareCode("feed the dog"));
+console.log(squareCode("feed the dog"));
 //console.log(squareCode("have a nice day"));
-console.log(squareCode("if man was meant to stay on the ground god would have given us roots"));
+//console.log(squareCode("if man was meant to stay on the ground god would have given us roots"));
 
 
