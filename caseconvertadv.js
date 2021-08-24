@@ -9,99 +9,87 @@ const makeCase = function(input, casetype) {
   let postwhite = false
   let vowels = ['a','e','i','o','u']
   if (typeof casetype === 'string'){
-    switch(casetype){
-      case 'camel':
-      case 'pascal':
-      case 'snake':
-      case 'kebab':
-      case 'title':
-      case 'vowel':
-      case 'camel':
-      case 'consonant':
-      case 'upper':
-      case 'lower':
-    }
-  } else {
-    for (let elem of casetype){
-      switch(elem){
-      case 'camel':
-        for (let chars of input){
-          if (postwhite && chars !== ' '){
-            ansstr += chars.toUpperCase()
-            postwhite = false
-          } else if ( chars === ' '){
-            postwhite = true
-          } else {
-            ansstr += chars
-          }
+    //make single strs a len 1 array.
+    casetype = [casetype]
+  }
+  for (let elem of casetype){
+    switch(elem){
+    case 'camel':
+      for (let chars of input){
+        if (postwhite && chars !== ' '){
+          ansstr += chars.toUpperCase()
+          postwhite = false
+        } else if ( chars === ' '){
+          postwhite = true
+        } else {
+          ansstr += chars
         }
-      case 'pascal':
-        for (let chars of input){
-          if (ansstr === ''){
-            ansstr += chars.toUpperCase()
-          } else if (postwhite && chars !== ' '){
-            ansstr += chars.toUpperCase()
-            postwhite = false
-          } else if ( chars === ' '){
-            postwhite = true
-          } else {
-            ansstr += chars
-          }
-        }
-      case 'snake':
-        for (let chars of input){
-          if ( chars === ' '){
-            ansstr += '_'
-          } else {
-            ansstr += chars
-          }
-        }
-      case 'kebab':
-        for (let chars of input){
-          if ( chars === ' '){
-            ansstr += '-'
-          } else {
-            ansstr += chars
-          }
-        }
-      case 'title':
-        for (let chars of input){
-          if (ansstr === ''){
-            ansstr += chars.toUpperCase()
-          } else if (postwhite && chars !== ' '){
-            ansstr += chars.toUpperCase()
-            postwhite = false
-          } else if ( chars === ' '){
-            ansstr += chars
-            postwhite = true
-          } else {
-            ansstr += chars
-          }
-        }
-      case 'vowel':
-        for (let chars of input){
-          if (vowels.includes(chars)){
-            ansstr += chars.toUpperCase()
-          } else {
-            ansstr += chars
-          }
-        }
-      case 'consonant':
-        for (let chars of input){
-          if (!vowels.includes(chars)){
-            ansstr += chars.toUpperCase()
-          } else {
-            ansstr += chars
-          }
-        }
-      case 'upper':
-        ansstr = ansstr.toUpperCase()
-      case 'lower':
-        ansstr = ansstr.toLowerCase()
       }
+    case 'pascal':
+      for (let chars of input){
+        if (ansstr === ''){
+          ansstr += chars.toUpperCase()
+        } else if (postwhite && chars !== ' '){
+          ansstr += chars.toUpperCase()
+          postwhite = false
+        } else if ( chars === ' '){
+          postwhite = true
+        } else {
+          ansstr += chars
+        }
+      }
+    case 'snake':
+      for (let chars of input){
+        if ( chars === ' '){
+          ansstr += '_'
+        } else {
+          ansstr += chars
+        }
+      }
+    case 'kebab':
+      for (let chars of input){
+        if ( chars === ' '){
+          ansstr += '-'
+        } else {
+          ansstr += chars
+        }
+      }
+    case 'title':
+      for (let chars of input){
+        if (ansstr === ''){
+          ansstr += chars.toUpperCase()
+        } else if (postwhite && chars !== ' '){
+          ansstr += chars.toUpperCase()
+          postwhite = false
+        } else if ( chars === ' '){
+          ansstr += chars
+          postwhite = true
+        } else {
+          ansstr += chars
+        }
+      }
+    case 'vowel':
+      for (let chars of input){
+        if (vowels.includes(chars)){
+          ansstr += chars.toUpperCase()
+        } else {
+          ansstr += chars
+        }
+      }
+    case 'consonant':
+      for (let chars of input){
+        if (!vowels.includes(chars)){
+          ansstr += chars.toUpperCase()
+        } else {
+          ansstr += chars
+        }
+      }
+    case 'upper':
+      ansstr = ansstr.toUpperCase()
+    case 'lower':
+      ansstr = ansstr.toLowerCase()
     }
   }
-
 }
 
 console.log(makeCase("this is a string", "camel"));
