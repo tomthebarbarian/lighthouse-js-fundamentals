@@ -22,7 +22,7 @@ const makeCase = function(input, casetype) {
   }
   // Determine ordofop
   for (let elem of casetype){
-    console.log(elem)
+    //console.log(elem)
     if (prio1.includes(elem)){
       ordofop.stage1 = ordofop.stage1.concat(elem)
     } else if (prio2.includes(elem)){
@@ -36,7 +36,7 @@ const makeCase = function(input, casetype) {
   // Actually doing
   let firststage = ''
   //Prio 1
-  console.log(ordofop.stage1)
+  //console.log(ordofop.stage1)
   for (let elem of ordofop.stage1){
     switch(elem){
     case 'camel':
@@ -64,6 +64,7 @@ const makeCase = function(input, casetype) {
           firststage += chars
         }
       }
+      break;
     case 'snake':
       for (let chars of input){
         if ( chars === ' '){
@@ -128,6 +129,7 @@ const makeCase = function(input, casetype) {
       break;
     }
     //prio3 stage 3
+    let thirdstage = secondstage
     if (secondstage === '') {
       thirdstage = firststage || input
     }
@@ -144,11 +146,12 @@ const makeCase = function(input, casetype) {
     return thirdstage
 }
 
-console.log(makeCase("this is a string", "camel"));
+//console.log(makeCase("this is a string", "camel"));
 //console.log(makeCase("this is a string", "pascal"));
 //console.log(makeCase("this is a string", "snake"));
 //console.log(makeCase("this is a string", "kebab"));
-//console.log(makeCase("this is a string", "title"));
+console.log(makeCase("this is a string", "title"));
 //console.log(makeCase("this is a string", "vowel"));
 //console.log(makeCase("this is a string", "consonant"));
 //console.log(makeCase("this is a string", ["upper", "snake"]));
+//console.log(makeCase("this is a string", ["pascal", "vowel"]));
