@@ -32,8 +32,6 @@ const makeCase = function(input, casetype) {
       }
     }
   } 
-  // make into ordered array
-  const ordercase = ordofop.stage1(ordofop.stage2.concat(ordofop.stage3))
 
   // Actually doing
   let firststage = ''
@@ -98,33 +96,41 @@ const makeCase = function(input, casetype) {
   } 
 
     //prio 2
+    let secondstage = ''
+    if (firststage === '') {
+      secondstage = input
+    }
     for (let elem of ordofop.stage2){
       switch(elem){
       case 'vowel':
-        for (let chars of input){
+        for (let chars of firststage){
           if (vowels.includes(chars)){
-            ansstr += chars.toUpperCase()
+            secondstage += chars.toUpperCase()
           } else {
-            ansstr += chars
+            secondstage += chars
           }
         }
       case 'consonant':
-        for (let chars of input){
+        for (let chars of firststage){
           if (!vowels.includes(chars)){
-            ansstr += chars.toUpperCase()
+            secondstage += chars.toUpperCase()
           } else {
-            ansstr += chars
+            secondstage += chars
           }
         }
       }
     }
     //prio3
-    for (let elem of ordofop.stage2){
+    let thirdstage = secondstage
+    if (secondstage === '') {
+      thirdstage = firststage || input
+    }
+    for (let elem of ordofop.stage3){
       switch(elem){
       case 'upper':
-        ansstr = ansstr.toUpperCase()
+        thirdstage = thirdstage.toUpperCase()
       case 'lower':
-        ansstr = ansstr.toLowerCase()
+        thirdstage = thirdstage.toLowerCase()
       }
     }
 }
