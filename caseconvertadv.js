@@ -5,7 +5,7 @@
 // str str/arrayOf str -> str
 const makeCase = function(input, casetype) {
   // Put your solution here
-  let ansstr = ''
+  
   let postwhite = false
   let vowels = ['a','e','i','o','u']
   if (typeof casetype === 'string'){
@@ -32,88 +32,101 @@ const makeCase = function(input, casetype) {
       }
     }
   } 
-
-
+  // make into ordered array
+  const ordercase = ordofop.stage1(ordofop.stage2.concat(ordofop.stage3))
 
   // Actually doing
-  for (let elem of casetype){
+  let firststage = ''
+  //Prio 1
+  for (let elem of ordofop.stage1){
     switch(elem){
     case 'camel':
       for (let chars of input){
         if (postwhite && chars !== ' '){
-          ansstr += chars.toUpperCase()
+          firststage += chars.toUpperCase()
           postwhite = false
         } else if ( chars === ' '){
           postwhite = true
         } else {
-          ansstr += chars
+          firststage += chars
         }
       }
     case 'pascal':
       for (let chars of input){
-        if (ansstr === ''){
-          ansstr += chars.toUpperCase()
+        if (firststage === ''){
+          firststage += chars.toUpperCase()
         } else if (postwhite && chars !== ' '){
-          ansstr += chars.toUpperCase()
+          firststage += chars.toUpperCase()
           postwhite = false
         } else if ( chars === ' '){
           postwhite = true
         } else {
-          ansstr += chars
+          firststage += chars
         }
       }
     case 'snake':
       for (let chars of input){
         if ( chars === ' '){
-          ansstr += '_'
+          firststage += '_'
         } else {
-          ansstr += chars
+          firststage += chars
         }
       }
     case 'kebab':
       for (let chars of input){
         if ( chars === ' '){
-          ansstr += '-'
+          firststage += '-'
         } else {
-          ansstr += chars
+          firststage += chars
         }
       }
     case 'title':
       for (let chars of input){
-        if (ansstr === ''){
-          ansstr += chars.toUpperCase()
+        if (firststage === ''){
+          firststage += chars.toUpperCase()
         } else if (postwhite && chars !== ' '){
           ansstr += chars.toUpperCase()
           postwhite = false
         } else if ( chars === ' '){
-          ansstr += chars
+          firststage += chars
           postwhite = true
         } else {
-          ansstr += chars
+          firststage += chars
         }
       }
-    case 'vowel':
-      for (let chars of input){
-        if (vowels.includes(chars)){
-          ansstr += chars.toUpperCase()
-        } else {
-          ansstr += chars
-        }
-      }
-    case 'consonant':
-      for (let chars of input){
-        if (!vowels.includes(chars)){
-          ansstr += chars.toUpperCase()
-        } else {
-          ansstr += chars
-        }
-      }
-    case 'upper':
-      ansstr = ansstr.toUpperCase()
-    case 'lower':
-      ansstr = ansstr.toLowerCase()
     }
-  }
+  } 
+
+    //prio 2
+    for (let elem of ordofop.stage2){
+      switch(elem){
+      case 'vowel':
+        for (let chars of input){
+          if (vowels.includes(chars)){
+            ansstr += chars.toUpperCase()
+          } else {
+            ansstr += chars
+          }
+        }
+      case 'consonant':
+        for (let chars of input){
+          if (!vowels.includes(chars)){
+            ansstr += chars.toUpperCase()
+          } else {
+            ansstr += chars
+          }
+        }
+      }
+    }
+    //prio3
+    for (let elem of ordofop.stage2){
+      switch(elem){
+      case 'upper':
+        ansstr = ansstr.toUpperCase()
+      case 'lower':
+        ansstr = ansstr.toLowerCase()
+      }
+    }
 }
 
 console.log(makeCase("this is a string", "camel"));
